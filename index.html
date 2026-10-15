@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>数学考研打卡 · 河北师范大学</title>
+<meta name="description" content="河北师范大学数学专业考研（数学分析·高等代数·政治·英语一）复习计划与打卡">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1c2a5c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="考研打卡">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" href="icons/favicon-32.png">
+<style>
+/* ============ 设计变量 ============ */
+:root{
+  --bg:#f2f4f9; --bg2:#ffffff; --card:#ffffff; --card2:#f7f9fd;
+  --text:#141a2b; --text2:#5a6480; --text3:#8b95ad;
+  --line:#e4e8f2; --line2:#eef1f8;
+  --brand:#3b5bdb; --brand2:#5c7cfa; --navy:#1c2a5c;
+  --ok:#0ca678; --warn:#f08c00; --bad:#e03131;
+  --c-math:#3b5bdb; --c-alg:#7048e8; --c-pol:#e8590c; --c-eng:#0c8599; --c-rev:#f08c00;
+  --shadow:0 1px 2px rgba(20,26,43,.04), 0 8px 24px -12px rgba(20,26,43,.18);
+  --r:16px; --r2:12px;
+  --safe-t:env(safe-area-inset-top,0px);
+  --safe-b:env(safe-area-inset-bottom,0px);
+}
+html[data-theme="dark"]{
+  --bg:#0d1119; --bg2:#141926; --card:#161c2b; --card2:#1c2333;
+  --text:#e8ecf6; --text2:#a5b0c8; --text3:#6f7b96;
+  --line:#242c3f; --line2:#1e2536;
+  --brand:#5c7cfa; --brand2:#7a94ff; --navy:#141c38;
+  --ok:#20c997; --warn:#ffa94d; --bad:#ff6b6b;
+  --c-math:#7a94ff; --c-alg:#a98bff; --c-pol:#ff922b; --c-eng:#22b8cf; --c-rev:#ffc078;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
+}
+@media (prefers-color-scheme: dark){
+  html[data-theme="auto"]{
+    --bg:#0d1119; --bg2:#141926; --card:#161c2b; --card2:#1c2333;
+    --text:#e8ecf6; --text2:#a5b0c8; --text3:#6f7b96;
+    --line:#242c3f; --line2:#1e2536;
+    --brand:#5c7cfa; --brand2:#7a94ff; --navy:#141c38;
+    --ok:#20c997; --warn:#ffa94d; --bad:#ff6b6b;
+    --c-math:#7a94ff; --c-alg:#a98bff; --c-pol:#ff922b; --c-eng:#22b8cf; --c-rev:#ffc078;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--text);
+  font:15px/1.55 -apple-system,BlinkMacSystemFont,"SF Pro SC","PingFang SC","Helvetica Neue","Microsoft YaHei",sans-serif;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:calc(74px + var(--safe-b));
+  overscroll-behavior-y:none;
+}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+h1,h2,h3,h4{margin:0;font-weight:700;letter-spacing:-.01em}
+a{color:var(--brand);text-decoration:none}
+.hide{display:none !important}
+
+/* ============ 布局 ============ */
+.wrap{max-width:680px;margin:0 auto;padding:0 16px}
+.topbar{
+  position:sticky;top:0;z-index:50;
+  padding-top:calc(var(--safe-t) + 8px);
+  background:color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter:saturate(180%) blur(14px);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid transparent; transition:border-color .2s;
+}
+.topbar.scrolled{border-bottom-color:var(--line)}
+.topbar-in{display:flex;align-items:center;gap:10px;padding:6px 16px 10px;max-width:680px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:9px;min-width:0}
+.brand-logo{
+  width:30px;height:30px;border-radius:9px;flex:none;
+  background:linear-gradient(160deg,#1c2a5c,#4c76e2);
+  color:#fff;display:grid;place-items:center;font-weight:700;font-size:17px;
+}
+.brand-txt{min-width:0}
+.brand-txt b{display:block;font-size:15px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand-txt span{display:block;font-size:11px;color:var(--text3);line-height:1.3}
+.topbar .spacer{flex:1}
+.icon-btn{
+  width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+  background:var(--card);border:1px solid var(--line);color:var(--text2);font-size:15px;
+}
+.icon-btn:active{transform:scale(.94)}
+
+/* ============ 倒计时 Hero ============ */
+.hero{
+  margin:14px 0 0;border-radius:20px;padding:18px 18px 16px;color:#fff;position:relative;overflow:hidden;
+  background:linear-gradient(150deg,#16224a 0%,#27407f 48%,#3b5bdb 100%);
+  box-shadow:var(--shadow);
+}
+html[data-theme="dark"] .hero{background:linear-gradient(150deg,#101733 0%,#1d2f5e 48%,#2b45a8 100%)}
+.hero:after{
+  content:"";position:absolute;right:-40px;top:-50px;width:160px;height:160px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.18),transparent 70%);
+}
+.hero-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;position:relative}
+.hero-label{font-size:11.5px;letter-spacing:.16em;opacity:.72;font-weight:600}
+.hero-days{display:flex;align-items:baseline;gap:8px;margin-top:2px}
+.hero-days b{font-size:44px;line-height:1.05;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.hero-days small{font-size:13px;opacity:.8}
+.hero-sub{font-size:12px;opacity:.8;margin-top:6px}
+.hero-ring{flex:none;position:relative;width:64px;height:64px}
+.hero-ring svg{transform:rotate(-90deg)}
+.hero-ring .rt{position:absolute;inset:0;display:grid;place-items:center;font-size:15px;font-weight:700;font-variant-numeric:tabular-nums}
+.hero-bars{display:flex;gap:6px;margin-top:14px;position:relative}
+.hero-bars div{flex:1}
+.hero-bars .bl{display:flex;justify-content:space-between;font-size:10.5px;opacity:.85;margin-bottom:4px}
+.hero-bars .bt{height:5px;border-radius:3px;background:rgba(255,255,255,.22);overflow:hidden}
+.hero-bars .bf{height:100%;border-radius:3px;background:#fff;transition:width .4s}
+
+/* ============ 通用卡片 ============ */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.sec{margin-top:20px}
+.sec-h{display:flex;align-items:center;gap:8px;margin:0 2px 10px}
+.sec-h h2{font-size:16px}
+.sec-h .spacer{flex:1}
+.sec-h .hint{font-size:12px;color:var(--text3)}
+.pill{font-size:11px;padding:3px 9px;border-radius:999px;background:var(--card2);border:1px solid var(--line);color:var(--text2);font-weight:600}
+.pill.brand{background:color-mix(in srgb,var(--brand) 14%,transparent);border-color:transparent;color:var(--brand)}
+
+/* ============ 任务卡 ============ */
+.blocks{display:flex;flex-direction:column;gap:9px}
+.block{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r2);
+  padding:12px 13px;display:flex;gap:11px;transition:opacity .2s,border-color .2s;
+  position:relative;overflow:hidden;
+}
+.block:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent,var(--brand))}
+.block.done{opacity:.5}
+.block.done .b-title{text-decoration:line-through;text-decoration-color:var(--text3)}
+.block .chk{
+  flex:none;width:23px;height:23px;border-radius:8px;border:2px solid var(--line);margin-top:1px;
+  display:grid;place-items:center;color:#fff;font-size:13px;transition:all .16s;
+}
+.block.done .chk{background:var(--accent,var(--brand));border-color:var(--accent,var(--brand))}
+.block .chk:active{transform:scale(.9)}
+.block .body{min-width:0;flex:1}
+.b-meta{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--text3);font-weight:600;letter-spacing:.02em}
+.b-meta .tag{padding:1.5px 7px;border-radius:5px;background:var(--card2);color:var(--accent,var(--brand));border:1px solid var(--line2)}
+.b-title{font-size:14.5px;font-weight:650;margin-top:4px;letter-spacing:-.01em}
+.b-desc{font-size:12.5px;color:var(--text2);margin-top:3px;white-space:pre-wrap}
+.b-tools{display:flex;gap:12px;margin-top:7px}
+.b-tools button{font-size:11.5px;color:var(--text3);font-weight:600;padding:0}
+.b-tools button:active{color:var(--brand)}
+.b-note{width:100%;margin-top:8px;border:1px solid var(--line);background:var(--card2);border-radius:9px;padding:8px 10px;font-size:12.5px;resize:vertical;min-height:52px}
+.b-note:focus{outline:2px solid color-mix(in srgb,var(--brand) 40%,transparent);outline-offset:-1px}
+
+/* ============ 进度条 / 环 ============ */
+.bar{height:8px;border-radius:5px;background:var(--card2);border:1px solid var(--line2);overflow:hidden}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--brand),var(--brand2));transition:width .45s cubic-bezier(.4,0,.2,1)}
+.ring{position:relative}
+.ring svg{transform:rotate(-90deg);display:block}
+.ring .rt{position:absolute;inset:0;display:grid;place-items:center;font-weight:700;font-variant-numeric:tabular-nums}
+
+/* ============ 阶段 / 周计划 ============ */
+.phase{border-left:3px solid var(--pc,var(--brand));padding-left:0;border-radius:var(--r2);overflow:hidden}
+.phase-h{padding:12px 14px;display:flex;align-items:center;gap:10px;cursor:pointer}
+.phase-h .dot{width:9px;height:9px;border-radius:50%;background:var(--pc,var(--brand));flex:none}
+.phase-h .t{flex:1;min-width:0}
+.phase-h .t b{display:block;font-size:14.5px}
+.phase-h .t span{display:block;font-size:11.5px;color:var(--text3)}
+.phase-h .chev{color:var(--text3);font-size:12px;transition:transform .2s}
+.phase.open .phase-h .chev{transform:rotate(90deg)}
+.phase-b{display:none;padding:0 14px 14px;border-top:1px solid var(--line2)}
+.phase.open .phase-b{display:block}
+.phase-goal{font-size:12.5px;color:var(--text2);margin:11px 0;padding:9px 11px;background:var(--card2);border-radius:10px;border:1px solid var(--line2)}
+.phase-goal b{color:var(--text)}
+
+.week{border-top:1px dashed var(--line);padding:11px 0}
+.week:first-of-type{border-top:0}
+.wk-h{display:flex;align-items:center;gap:9px}
+.wk-h .wk-n{
+  flex:none;font-size:11px;font-weight:700;padding:3px 8px;border-radius:7px;
+  background:color-mix(in srgb,var(--pc,var(--brand)) 13%,transparent);color:var(--pc,var(--brand));
+}
+.wk-h .wk-t{flex:1;font-size:13.5px;font-weight:650;min-width:0}
+.wk-h .wk-d{font-size:11px;color:var(--text3);font-variant-numeric:tabular-nums}
+.wk-sub{font-size:11.5px;color:var(--text2);margin:5px 0 0 0;padding-left:2px}
+.tasklist{display:flex;flex-direction:column;gap:2px;margin-top:7px}
+.task{display:flex;gap:9px;align-items:flex-start;padding:5px 6px;border-radius:8px;font-size:12.5px;line-height:1.5}
+.task:active{background:var(--card2)}
+.task .tb{
+  flex:none;width:17px;height:17px;border-radius:6px;border:1.6px solid var(--line);margin-top:1.5px;
+  display:grid;place-items:center;font-size:10px;color:#fff;transition:.15s;
+}
+.task.on .tb{background:var(--pc,var(--brand));border-color:var(--pc,var(--brand))}
+.task.on{color:var(--text3)}
+.task.on .tt{text-decoration:line-through;text-decoration-color:var(--text3)}
+.task .tt{min-width:0;flex:1}
+.task .res{display:block;font-size:11px;color:var(--text3);margin-top:1px}
+
+/* ============ 大纲 ============ */
+.syl-group{margin-bottom:6px}
+.grp-h{display:flex;align-items:center;gap:10px;padding:11px 13px;cursor:pointer;background:var(--card);border:1px solid var(--line);border-radius:var(--r2)}
+.grp-h .bar{flex:1;max-width:110px}
+.grp-h .g-n{flex:1;font-size:14px;font-weight:650}
+.grp-h .g-p{font-size:11.5px;color:var(--text3);font-variant-numeric:tabular-nums}
+.chapters{display:none;padding:6px 0 4px 4px}
+.grp-h.open+.chapters{display:block}
+.chap{border-left:2px solid var(--line);padding:7px 0 7px 12px;margin-left:6px;font-size:12.5px}
+.chap .cn{font-weight:650;font-size:13px}
+.chap .cd{color:var(--text2);margin-top:2px;font-size:12px}
+.chap .cr{color:var(--text3);margin-top:2px;font-size:11.5px}
+.chap .cp{color:var(--pc,var(--brand));font-weight:700}
+
+/* ============ 统计 ============ */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);padding:12px 13px}
+.stat b{display:block;font-size:22px;font-weight:750;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stat span{display:block;font-size:11.5px;color:var(--text3);margin-top:1px}
+.subrow{display:flex;align-items:center;gap:11px;padding:11px 0;border-top:1px solid var(--line2)}
+.subrow:first-child{border-top:0}
+.subrow .sn{flex:1;font-size:13.5px;font-weight:650}
+.subrow .sp{font-size:12px;color:var(--text3);font-variant-numeric:tabular-nums;min-width:76px;text-align:right}
+
+.heat{display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,1fr);gap:3px;overflow-x:auto;padding:2px 0 4px}
+.heat i{width:11px;height:11px;border-radius:3px;background:var(--card2);border:1px solid var(--line2)}
+.heat i.l1{background:color-mix(in srgb,var(--brand) 26%,var(--card2));border-color:transparent}
+.heat i.l2{background:color-mix(in srgb,var(--brand) 50%,var(--card2));border-color:transparent}
+.heat i.l3{background:color-mix(in srgb,var(--brand) 74%,var(--card2));border-color:transparent}
+.heat i.l4{background:var(--brand);border-color:transparent}
+.heat i.today{outline:2px solid var(--warn);outline-offset:1px}
+.heat-legend{display:flex;align-items:center;gap:5px;justify-content:flex-end;font-size:10.5px;color:var(--text3);margin-top:6px}
+
+/* ============ 错题 ============ */
+.mk{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);padding:12px 13px;position:relative;overflow:hidden}
+.mk:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent,var(--brand))}
+.mk .mh{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text3);font-weight:600}
+.mk .mh .spacer{flex:1}
+.mk .q{font-size:13.5px;font-weight:600;margin-top:5px}
+.mk .why{font-size:12.5px;color:var(--text2);margin-top:4px;white-space:pre-wrap}
+.mk .fix{font-size:12.5px;color:var(--text2);margin-top:4px;white-space:pre-wrap;padding-left:9px;border-left:2px solid var(--line)}
+.mk .mt{display:flex;gap:14px;margin-top:8px}
+.mk .mt button{font-size:11.5px;font-weight:650;color:var(--text3)}
+.mk.mastered{opacity:.55}
+
+.fld{display:block;margin-bottom:10px}
+.fld>span{display:block;font-size:12px;font-weight:650;color:var(--text2);margin-bottom:5px}
+.fld input,.fld textarea,.fld select{
+  width:100%;border:1px solid var(--line);background:var(--card2);border-radius:10px;
+  padding:10px 11px;font-size:14px;
+}
+.fld textarea{min-height:64px;resize:vertical}
+.fld input:focus,.fld textarea:focus,.fld select:focus{outline:2px solid color-mix(in srgb,var(--brand) 35%,transparent);outline-offset:-1px;border-color:transparent}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  padding:11px 16px;border-radius:11px;font-size:14px;font-weight:650;
+  background:var(--brand);color:#fff;width:100%;
+}
+.btn:active{transform:scale(.985);opacity:.92}
+.btn.ghost{background:var(--card2);color:var(--text);border:1px solid var(--line)}
+.btn.danger{background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad);border:1px solid color-mix(in srgb,var(--bad) 30%,transparent)}
+.btn.sm{padding:8px 12px;font-size:13px;width:auto}
+.btnrow{display:flex;gap:8px}
+.btnrow .btn{width:auto;flex:1}
+
+/* ============ 计时器 ============ */
+.timer{display:flex;align-items:center;gap:14px}
+.timer .tv{font-size:30px;font-weight:750;font-variant-numeric:tabular-nums;letter-spacing:-.02em;min-width:96px}
+.timer .tctl{display:flex;gap:7px;flex-wrap:wrap;flex:1;justify-content:flex-end}
+.chip{padding:6px 11px;border-radius:9px;font-size:12.5px;font-weight:650;background:var(--card2);border:1px solid var(--line);color:var(--text2)}
+.chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+
+/* ============ 空状态 / toast ============ */
+.empty{text-align:center;padding:34px 20px;color:var(--text3);font-size:13px}
+.empty b{display:block;font-size:15px;color:var(--text2);margin-bottom:5px}
+#toast{
+  position:fixed;left:50%;bottom:calc(88px + var(--safe-b));transform:translate(-50%,14px);
+  background:#111827;color:#fff;font-size:13px;font-weight:600;padding:10px 16px;border-radius:11px;
+  opacity:0;pointer-events:none;transition:.22s;z-index:200;max-width:88vw;text-align:center;
+}
+html[data-theme="dark"] #toast{background:#e8ecf6;color:#111827}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* ============ 底部导航 ============ */
+.tabs{
+  position:fixed;left:0;right:0;bottom:0;z-index:100;
+  padding-bottom:var(--safe-b);
+  background:color-mix(in srgb,var(--bg2) 88%,transparent);
+  backdrop-filter:saturate(180%) blur(16px);-webkit-backdrop-filter:saturate(180%) blur(16px);
+  border-top:1px solid var(--line);
+  display:flex;
+}
+.tabs button{
+  flex:1;padding:9px 0 7px;display:flex;flex-direction:column;align-items:center;gap:3px;
+  color:var(--text3);font-size:10.5px;font-weight:600;transition:color .15s;
+}
+.tabs button .ti{font-size:19px;line-height:1}
+.tabs button.on{color:var(--brand)}
+.tabs button:active{opacity:.6}
+
+/* ============ 弹层 ============ */
+.sheet-bg{position:fixed;inset:0;background:rgba(10,14,25,.5);z-index:150;opacity:0;pointer-events:none;transition:.2s}
+.sheet-bg.on{opacity:1;pointer-events:auto}
+.sheet{
+  position:fixed;left:0;right:0;bottom:0;z-index:151;background:var(--bg2);
+  border-radius:20px 20px 0 0;padding:16px 16px calc(20px + var(--safe-b));
+  transform:translateY(102%);transition:transform .26s cubic-bezier(.4,0,.2,1);
+  max-height:88vh;overflow-y:auto;max-width:680px;margin:0 auto;
+}
+.sheet.on{transform:translateY(0)}
+.sheet-grab{width:36px;height:4px;border-radius:3px;background:var(--line);margin:0 auto 12px}
+.sheet h3{font-size:16px;margin-bottom:12px}
+.note-tip{font-size:12px;color:var(--text3);line-height:1.6}
+.kv{display:flex;justify-content:space-between;gap:12px;font-size:13px;padding:8px 0;border-top:1px solid var(--line2)}
+.kv:first-child{border-top:0}
+.kv span{color:var(--text3)}
+.kv b{font-weight:650;text-align:right}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;background:var(--card2);padding:1.5px 5px;border-radius:5px;border:1px solid var(--line2)}
+.seg{display:flex;background:var(--card2);border:1px solid var(--line);border-radius:11px;padding:3px;gap:3px}
+.seg button{flex:1;padding:7px 0;border-radius:8px;font-size:12.5px;font-weight:650;color:var(--text2)}
+.seg button.on{background:var(--card);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <div class="topbar-in">
+    <div class="brand">
+      <div class="brand-logo">Σ</div>
+      <div class="brand-txt">
+        <b id="brandTitle">河北师大 · 数学考研打卡</b>
+        <span id="brandSub">加载中…</span>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <button class="icon-btn" id="btnTheme" title="切换深浅色">◐</button>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- ================= 今日 ================= -->
+  <section id="v-today">
+    <div class="hero">
+      <div class="hero-top">
+        <div>
+          <div class="hero-label">距 2026 考研初试（2026-12-19 开考）</div>
+          <div class="hero-days"><b id="daysLeft">--</b><small>天</small></div>
+          <div class="hero-sub" id="examSub">—</div>
+        </div>
+        <div class="hero-ring">
+          <svg width="64" height="64"><circle cx="32" cy="32" r="27" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="6"/>
+          <circle id="heroArc" cx="32" cy="32" r="27" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"
+                  stroke-dasharray="169.6" stroke-dashoffset="169.6"/></svg>
+          <div class="rt" id="heroPct">0%</div>
+        </div>
+      </div>
+      <div class="hero-bars" id="heroBars"></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-h">
+        <h2 id="todayTitle">今日任务</h2>
+        <div class="spacer"></div>
+        <span class="pill" id="todayCount">0/0</span>
+      </div>
+      <div class="blocks" id="todayBlocks"></div>
+      <div class="btnrow" style="margin-top:10px">
+        <button class="btn ghost sm" id="btnAddTask" style="flex:1">＋ 自定义任务</button>
+        <button class="btn ghost sm" id="btnShuffle" style="flex:1">⟳ 换一套今日安排</button>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><h2>本周重点</h2><div class="spacer"></div><span class="hint" id="weekHint"></span></div>
+      <div class="card" id="weekCard" style="padding:4px 14px"></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><h2>专注计时</h2><div class="spacer"></div><span class="hint">番茄法：25 分钟一段</span></div>
+      <div class="card" style="padding:14px">
+        <div class="timer">
+          <div class="tv" id="timerView">25:00</div>
+          <div class="tctl">
+            <button class="chip on" data-min="25">25</button>
+            <button class="chip" data-min="45">45</button>
+            <button class="chip" data-min="60">60</button>
+            <button class="chip" data-min="90">90</button>
+          </div>
+        </div>
+        <div class="btnrow" style="margin-top:12px">
+          <button class="btn" id="btnTimer">开始</button>
+          <button class="btn ghost" id="btnTimerReset" style="flex:0 0 82px">重置</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><h2>今日记录</h2><div class="spacer"></div><span class="hint">写下今天卡在哪</span></div>
+      <textarea class="b-note" id="dayNote" placeholder="例：一致连续的定义搞清了，但 ε-δ 证明还是写不顺…"></textarea>
+    </div>
+  </section>
+
+  <!-- ================= 计划 ================= -->
+  <section id="v-plan" class="hide">
+    <div class="sec" style="margin-top:14px">
+      <div class="sec-h"><h2>总览</h2><div class="spacer"></div><span class="hint" id="planHint"></span></div>
+      <div class="card" style="padding:14px">
+        <div class="grid3" id="planStats"></div>
+        <div style="margin-top:14px">
+          <div class="kv"><span>考试科目</span><b>数学分析 150 · 高等代数 150 · 政治 100 · 英语一 100</b></div>
+          <div class="kv"><span>总分</span><b>500 分</b></div>
+          <div class="kv"><span>每日投入</span><b>8–10 小时（数学 ≥6h）</b></div>
+          <div class="kv"><span>报考单位</span><b>河北师范大学 · 数学</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><h2>阶段与周计划</h2><div class="spacer"></div><span class="hint">点标题展开</span></div>
+      <div id="phaseList" style="display:flex;flex-direction:column;gap:10px"></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><h2>教材知识大纲</h2><div class="spacer"></div><span class="hint">点点划掉</span></div>
+      <div id="sylList"></div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><h2>资料与操作要点</h2></div>
+      <div class="card" style="padding:4px 14px" id="tipsBox"></div>
+    </div>
+  </section>
+
+  <!-- ================= 统计 ================= -->
+  <section id="v-stats" class="hide">
+    <div class="sec" style="margin-top:14px">
+      <div class="sec-h"><h2>打卡总览</h2></div>
+      <div class="grid2" id="statTiles"></div>
+    </div>
+    <div class="sec">
+      <div class="sec-h"><h2>四科完成度</h2><div class="spacer"></div><span class="hint">按大纲知识点计</span></div>
+      <div class="card" style="padding:4px 14px" id="subProgress"></div>
+    </div>
+    <div class="sec">
+      <div class="sec-h"><h2>打卡热力图</h2><div class="spacer"></div><span class="hint">最近 12 周</span></div>
+      <div class="card" style="padding:13px 14px">
+        <div class="heat" id="heat"></div>
+        <div class="heat-legend"><span>少</span><i style="width:11px;height:11px;border-radius:3px;background:var(--card2);border:1px solid var(--line2);display:inline-block"></i><i style="width:11px;height:11px;border-radius:3px;background:color-mix(in srgb,var(--brand) 26%,var(--card2));display:inline-block"></i><i style="width:11px;height:11px;border-radius:3px;background:color-mix(in srgb,var(--brand) 50%,var(--card2));display:inline-block"></i><i style="width:11px;height:11px;border-radius:3px;background:color-mix(in srgb,var(--brand) 74%,var(--card2));display:inline-block"></i><i style="width:11px;height:11px;border-radius:3px;background:var(--brand);display:inline-block"></i><span>多</span></div>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="sec-h"><h2>近 7 天完成率</h2></div>
+      <div class="card" style="padding:14px" id="weekBars"></div>
+    </div>
+    <div class="sec" style="margin-bottom:8px">
+      <div class="sec-h"><h2>累计学习时长</h2><div class="spacer"></div><span class="hint" id="focusHint"></span></div>
+      <div class="card" style="padding:14px">
+        <div class="grid3" id="focusTiles"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 错题 ================= -->
+  <section id="v-mistakes" class="hide">
+    <div class="sec" style="margin-top:14px">
+      <div class="sec-h"><h2>错题本</h2><div class="spacer"></div><span class="hint" id="mkCount"></span></div>
+      <div class="seg" id="mkFilter" style="margin-bottom:10px">
+        <button class="on" data-s="all">全部</button>
+        <button data-s="math">数分</button>
+        <button data-s="alg">高代</button>
+        <button data-s="pol">政治</button>
+        <button data-s="eng">英语</button>
+      </div>
+      <div id="mkList" style="display:flex;flex-direction:column;gap:9px"></div>
+    </div>
+    <button class="btn" id="btnAddMk" style="margin:14px 0 8px">＋ 记一道错题</button>
+  </section>
+
+  <!-- ================= 设置 ================= -->
+  <section id="v-settings" class="hide">
+    <div class="sec" style="margin-top:14px">
+      <div class="sec-h"><h2>基本设置</h2></div>
+      <div class="card" style="padding:14px">
+        <label class="fld"><span>初试日期</span><input type="date" id="setExamDate"></label>
+        <label class="fld" style="margin-bottom:0"><span>外观</span>
+          <div class="seg" id="themeSeg">
+            <button data-t="auto">跟随系统</button><button data-t="light">浅色</button><button data-t="dark">深色</button>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><h2>安装到 iPhone 13</h2></div>
+      <div class="card" style="padding:14px">
+        <div class="note-tip" id="installTip"></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><h2>数据</h2></div>
+      <div class="card" style="padding:14px">
+        <div class="note-tip" style="margin-bottom:12px">数据只保存在这台设备的浏览器里，不会上传。换手机或清理 Safari 数据前，先导出备份。</div>
+        <div class="btnrow"><button class="btn ghost sm" id="btnExport">导出备份</button><button class="btn ghost sm" id="btnImport">导入备份</button></div>
+        <div class="btnrow" style="margin-top:8px"><button class="btn danger sm" id="btnReset">清空全部打卡数据</button></div>
+        <input type="file" id="fileImport" accept=".json,application/json" class="hide">
+      </div>
+    </div>
+
+    <div class="sec" style="margin-bottom:8px">
+      <div class="sec-h"><h2>关于</h2></div>
+      <div class="card" style="padding:14px">
+        <div class="kv"><span>App 版本</span><b>v1.0</b></div>
+        <div class="kv"><span>科目</span><b>数学分析 · 高等代数 · 政治 · 英语一</b></div>
+        <div class="kv"><span>离线</span><b>支持（已缓存）</b></div>
+        <div class="note-tip" style="margin-top:12px">计划为通用建议框架，请以河北师范大学研究生院当年发布的招生专业目录、参考书目与考试大纲为准。</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<nav class="tabs" id="tabs">
+  <button data-v="today" class="on"><span class="ti">◎</span>今日</button>
+  <button data-v="plan"><span class="ti">▤</span>计划</button>
+  <button data-v="stats"><span class="ti">▥</span>统计</button>
+  <button data-v="mistakes"><span class="ti">✎</span>错题</button>
+  <button data-v="settings"><span class="ti">⚙</span>设置</button>
+</nav>
+
+<div class="sheet-bg" id="sheetBg"></div>
+<div class="sheet" id="sheet"></div>
+<div id="toast"></div>
+
+<script>
+/* =========================================================================
+   河北师范大学 · 数学考研打卡  v1.0
+   单文件离线应用：数据存 localStorage，PWA 由 sw.js + manifest 提供
+   ========================================================================= */
+
+/* ---------- 1. 内置计划数据 ---------- */
+/* ==== PLAN_BEGIN ==== */
+const PLAN = {
+  meta: {
+    target: "河北师范大学 · 数学（070100）",
+    examDefault: "2026-12-19",
+    examDay2: "2026-12-20",
+    sprintStart: "2026-10-15",
+    sprintEnd: "2026-12-18",
+    signup: "2026-10-15 → 2026-10-24",
+    note: "以河北师范大学研究生院当年招生目录与考试大纲为准"
+  },
+  phases: [
+    {
+      id: "p1", name: "第一阶段 · 抢救式过一轮（高频优先）", color: "#e8590c",
+      range: "2026-10-15 → 2026-10-28", goal: "用 14 天把两本指定教材的高频章节过完一遍：定义会说、主定理会证、课后题能做。此阶段不追求全，只追求「考得最多的那几章」先立起来；同时完成网上报名。",
+      weeks: [
+        { r: "10/15–10/20", t: "报名 + 数分实数极限起步 / 高代多项式", tasks: [
+          { s: ["数分","实数集与函数：确界原理、绝对值不等式、复合与反函数","华东师大版 §1；把「确界」的定义用 ∀ε 写三遍"], d: 8 },
+          { s: ["数分","数列极限：ε-N 定义、唯一性/有界性/保号性、四则运算","§2.1–2.2；课后题 1–8 题全做"], d: 9 },
+          { s: ["高代","多项式：整除、带余除法、最大公因式、互素","北大版第 1 章 §1–4；辗转相除必须手算熟"], d: 8 },
+          { s: ["高代","因式分解、重因式、有理根、Eisenstein 判别法","第 1 章 §5–8；判别法各配 3 道例题"], d: 7 },
+          { s: ["政治","只做一件事：认题型。马原、毛中特、史纲、思修法基、时政五块分值结构","不用背，先建立印象，2 小时一次性完成"], d: 2 },
+          { s: ["英语","核心词汇第一遍（每天 150 词）+ 长难句断句练 20 句","主干先找谓语；从句/非谓语当修饰成分划掉"], d: 12 },
+          { s: ["复盘","网报填完并核对：招生单位 10094、报考点、专业 070100 数学、科目 101/201/724/821","报名窗口 2026-10-15 → 2026-10-24，每日 9:00—22:00，逾期不补"], d: 2 }
+        ]},
+        { r: "10/21–10/28", t: "数分极限收口 / 高代行列式与方程组", tasks: [
+          { s: ["数分","单调有界定理、Cauchy 收敛准则、致密性定理、Stolz 定理","§2.3–2.5；存在性证明的三大武器，各做 5 题"], d: 9 },
+          { s: ["数分","函数极限与连续：ε-δ、Heine 定理、两个重要极限","§3；注意 x→x0 与 x→∞ 的差别"], d: 8 },
+          { s: ["数分","一致连续（重难点）+ 间断点分类","§4；一致连续的证明先慢后快，别跳步"], d: 7 },
+          { s: ["高代","行列式：定义、性质、按行列展开、Vandermonde","第 2 章；Vandermonde 与递推法各 5 题"], d: 9 },
+          { s: ["高代","线性方程组：消元法、解的结构、Cramer 法则","第 3 章；把「解空间维数 = n − r」理解透"], d: 9 },
+          { s: ["高代","矩阵：运算、逆矩阵、分块矩阵、初等变换","第 4 章；初等变换求逆要掐时间练"], d: 8 },
+          { s: ["政治","马原·唯物论与辩证法：三大规律（对立统一、质量互变、否定之否定）","只要看懂，不要求背；配套选择题 30 道"], d: 3 },
+          { s: ["英语","词汇第一遍收尾 + 阅读真题 2010–2011 精读 4 篇","每篇限时 18 分钟，做完逐句翻译"], d: 12 },
+          { s: ["复盘","两周体检：把还没搞懂的 10 个点列出来，交给第二阶段","诚实列，别自欺——这份清单就是后面的复习地图"], d: 2 }
+        ]}
+      ]
+    },
+    {
+      id: "p2", name: "第二阶段 · 专题攻坚 + 真题一刷", color: "#7048e8",
+      range: "2026-10-29 → 2026-11-25", goal: "按题型（不是按章节）再刷一遍：极限证明、中值定理、级数、Jordan 标准形、欧氏空间。数学两科近 15 年真题各一刷，错题进错题本并 48 小时内二刷。政治开始每日 1.5 小时。",
+      weeks: [
+        { r: "10/29–11/05", t: "数分中值定理与 Taylor / 高代秩与二次型", tasks: [
+          { s: ["数分","导数与微分：定义求导、高阶导数、Leibniz 公式","§5；用定义求导的题必须动手算"], d: 8 },
+          { s: ["数分","微分中值定理：Rolle、Lagrange、Cauchy 的条件与反例","§6.1–6.2；辅助函数构造法做 20 题"], d: 10 },
+          { s: ["数分","Taylor 公式：Peano 余项与 Lagrange 余项","§6.3；展开阶数与余项形式一一对应"], d: 8 },
+          { s: ["高代","矩阵的秩：定义、性质、秩不等式","第 4 章 §4.4；秩是高代的核心量，随时回到它"], d: 9 },
+          { s: ["高代","二次型：标准形、配方法、合同变换、惯性定理","第 5 章；配方法与正交变换两种化标准形都要会"], d: 9 },
+          { s: ["高代","正定二次型与正定矩阵的等价判定","第 5 章 §5.3；顺序主子式判定要会算"], d: 8 },
+          { s: ["政治","马原·认识论与唯物史观 + 政治经济学（剩余价值）","开始每日 1.5 小时；配套选择题 60 道"], d: 6 },
+          { s: ["英语","真题 2012–2014 阅读 6 篇精读 + 翻译每天 1 句","错项要能说出「错在哪」，不能只说「感觉不对」"], d: 12 },
+          { s: ["复盘","周复盘：数分证明题按「证存在 / 求值 / 判敛」三类归档","错题本 48 小时内二刷，这条规则不能破"], d: 2 }
+        ]},
+        { r: "11/06–11/12", t: "数分积分与级数 / 高代线性空间与线性变换", tasks: [
+          { s: ["数分","不定积分：换元、分部、有理函数积分","§7；手速靠量堆，每天 15 道"], d: 8 },
+          { s: ["数分","定积分：可积条件、微积分基本定理、变限积分求导","§8；变限积分是高频考点，务必熟练"], d: 9 },
+          { s: ["数分","反常积分：收敛判别与比较判别法","§9；与级数判别法对照记忆"], d: 7 },
+          { s: ["高代","线性空间：定义、基与维数、坐标、子空间、交与和、直和","第 6 章；dim(V1+V2)=dimV1+dimV2−dim(V1∩V2)"], d: 10 },
+          { s: ["高代","线性变换：定义、矩阵表示、核与像、不变子空间","第 7 章 §7.1–7.3；抽象概念先接受再理解"], d: 10 },
+          { s: ["高代","特征值与特征向量、相似对角化的充要条件","第 7 章 §7.4；这是后面 Jordan 标准形的引子"], d: 9 },
+          { s: ["政治","毛中特：习近平新时代思想框架 + 史纲时间轴","史纲用时间轴记，别背散点"], d: 6 },
+          { s: ["英语","真题 2015–2017 阅读 6 篇 + 新题型（七选五）入门","新题型先看逻辑词与指代，再看选项"], d: 12 },
+          { s: ["复盘","周复盘 + 英语生词本滚动 100 词/天","词汇停了阅读立刻掉，一天都不能停"], d: 2 }
+        ]},
+        { r: "11/13–11/19", t: "数分级数与多元 / 高代 Jordan 标准形与欧氏空间", tasks: [
+          { s: ["数分","数项级数：正项判别法全集、交错级数、绝对收敛、Abel/Dirichlet","§11；判别法整理成一页决策图"], d: 9 },
+          { s: ["数分","函数项级数的一致收敛、Weierstrass 判别法、幂级数","§12–13；逐项求导/积分的前提条件是考点"], d: 9 },
+          { s: ["数分","Fourier 级数：Dirichlet 收敛定理与展开计算","§14；记清收敛定理的条件与结论"], d: 7 },
+          { s: ["高代","λ-矩阵、初等因子、不变因子、Jordan 标准形","第 8 章 §8.1–8.5；Jordan 块会写会求"], d: 11 },
+          { s: ["高代","最小多项式与特征多项式的关系、循环子空间","第 8 章 §8.6–8.7；整理成对照表"], d: 8 },
+          { s: ["高代","欧几里得空间：内积、标准正交基、Schmidt 正交化","第 9 章 §9.1；正交化过程必须手算熟"], d: 9 },
+          { s: ["高代","正交变换、对称变换、实对称矩阵必可正交对角化","第 9 章 §9.2–9.3；证明要能默写"], d: 8 },
+          { s: ["政治","史纲收尾 + 思修法基（性价比高，别放弃）","配套选择题 80 道，错题当日标记"], d: 6 },
+          { s: ["英语","真题 2018–2020 阅读 + 小作文类型模板各写 1 篇","小作文 12 分钟内必须写完"], d: 12 }
+        ]},
+        { r: "11/20–11/25", t: "数分多元积分 / 高代收口 + 真题一刷开场", tasks: [
+          { s: ["数分","多元函数微分学：重极限、偏导、全微分、复合与隐函数求导","下册 §16–17；偏导存在 ≠ 可微，反例要记住"], d: 9 },
+          { s: ["数分","重积分：二重/三重、换序、极坐标与球坐标换元","§18；Jacobi 行列式不能错"], d: 9 },
+          { s: ["数分","曲线积分与曲面积分 + Green / Gauss / Stokes","§19–20；这是数分最易失分处，多做题"], d: 9 },
+          { s: ["高代","线性变换进阶 + 双线性函数（按指定教材选做）","北大版第 10 章；若无此章则把时间给数分"], d: 7 },
+          { s: ["高代","高代全程框架默写：多项式—行列式—方程组—矩阵—二次型—空间—变换—λ矩阵—欧氏空间","合书默写每部分主定理，缺的补回去"], d: 8 },
+          { s: ["高代","高代真题 2015–2019 一刷（限时 3 小时，按套做）","先做题再对答案；错题标出所属章节"], d: 9 },
+          { s: ["政治","1000 题/强化题库第一遍收口，错题二刷","选择题目标 38+，日清当日错题"], d: 7 },
+          { s: ["英语","真题 2021–2022 阅读 + 大作文三段式框架定型","描述→分析→结论，积累 20 个高分句式"], d: 11 },
+          { s: ["复盘","阶段验收：两科高频章节是否都能合书复述主定理","达标线：课后题正确率 ≥70%"], d: 2 }
+        ]}
+      ]
+    },
+    {
+      id: "p3", name: "第三阶段 · 真题二刷 + 政治主攻", color: "#3b5bdb",
+      range: "2026-11-26 → 2026-12-09", goal: "数学按套卷限时刷、按错因归类补漏；政治选择题（肖八/腿四）每日一套并当日消化，分析题开始背框架；英语完成真题第二轮与作文定稿。",
+      weeks: [
+        { r: "11/26–12/02", t: "数分真题一刷 / 高代真题二刷与错因归类", tasks: [
+          { s: ["数分","真题 2015–2019 一刷：整套限时 3 小时","按考试时间做（下午 14:00–17:00），不许中途翻书"], d: 12 },
+          { s: ["数分","一刷精批：每道错题写「错因 / 正解 / 下次怎么避免」","错因归类：概念错 / 计算错 / 没思路，三类分开补"], d: 10 },
+          { s: ["高代","真题 2020–2023 二刷 + 2024 一刷","二刷目标：同一题型不再失分"], d: 10 },
+          { s: ["高代","高代错因归类与专项补漏（Jordan、秩不等式、正交对角化）","哪类错得最多就先攻哪类"], d: 9 },
+          { s: ["政治","肖八/腿四选择题每天 1 套，错题当场消化","选择题决定基础分，务必日清"], d: 9 },
+          { s: ["英语","真题第二轮：2010–2016 只刷错题与长难句","二刷要求：能背出每道错题的错因"], d: 10 },
+          { s: ["英语","作文定稿：大作文 6 篇 + 小作文 7 篇，全部抄写定型","考前只背自己的稿子，不背通用模板"], d: 6 },
+          { s: ["复盘","周复盘：把两科一刷的失分点做成一张「必须补掉」清单","清单不超过 15 条，多了就没法执行"], d: 2 }
+        ]},
+        { r: "12/03–12/09", t: "数分真题二三刷 / 政治分析题 / 英语全真模考", tasks: [
+          { s: ["数分","真题 2020–2024 一刷：整套限时 3 小时","近 5 年真题的题型分布最能说明问题"], d: 11 },
+          { s: ["数分","真题二刷：只做错题 + 高频题型专项（中值定理、级数、曲线曲面积分）","目标：近 10 年真题稳定 120+"], d: 10 },
+          { s: ["高代","真题三刷：只看错题 + 计算题每天 30 分钟热身","计算题是保底分，不能丢"], d: 9 },
+          { s: ["政治","分析题：马原「原理＋材料＋阐述」三段式，每天写 2 道大题","必须动手写，不能只看答案"], d: 10 },
+          { s: ["政治","时政系统化：全年重大会议、重要讲话、重要纪念日","整理成一页时政清单，滚动看"], d: 6 },
+          { s: ["英语","全真模考 2 套（14:00–17:00 完成整套）","含作文，严格计时；模考后逐项复盘"], d: 10 },
+          { s: ["英语","完形 + 新题型 + 翻译专项各 2 轮","完形先通读抓逻辑再填空，别超时"], d: 6 },
+          { s: ["复盘","周复盘 + 准考证打印提醒、考场踩点规划","身份证＋准考证＋黑色签字笔＋2B 铅笔＋橡皮"], d: 2 }
+        ]}
+      ]
+    },
+    {
+      id: "p4", name: "第四阶段 · 考前收口（只做减法）", color: "#0ca678",
+      range: "2026-12-10 → 2026-12-18", goal: "不再攻新题。数分/高代各保留每 2 天一套卷保持手感，公式定理清单与错题必看；政治肖四收口；英语作文默写＋每天 2 篇阅读。最后 2 天只看清单、早睡。",
+      weeks: [
+        { r: "12/10–12/14", t: "考前收口：清单化复习 + 肖四", tasks: [
+          { s: ["数分","公式定理清单默写 + 错题必看 + 每 2 天 1 套卷","保持大脑热机，不再攻新题"], d: 10 },
+          { s: ["高代","公式定理清单默写 + 错题必看 + 每 2 天 1 套卷","Jordan、正交对角化、秩不等式重点过"], d: 10 },
+          { s: ["政治","肖四选择题 + 分析题背诵收口","背框架和关键词，不逐字背"], d: 10 },
+          { s: ["英语","作文默写（大小作文各 3 篇）+ 阅读每天 2 篇","阅读手感一天都不能断"], d: 8 },
+          { s: ["复盘","按考试时间作息：上午 8:30 政治、下午 14:00 英语","考前一周把生物钟掰到考试节奏"], d: 2 }
+        ]},
+        { r: "12/15–12/18", t: "考前最后四天：只看清单，早睡", tasks: [
+          { s: ["数分","只看定理清单与错题本，最后一天不做新卷","数学是 12/20 考，先按 12/19 两科考完的节奏走"], d: 6 },
+          { s: ["高代","只看清单与错题本，计算题手写热身 30 分钟","手不能生，尤其是求逆与正交化"], d: 6 },
+          { s: ["政治","肖四分析题框架滚动 + 时政清单最后一遍","考前 3 天只背框架和关键词"], d: 8 },
+          { s: ["英语","作文默写 + 真题阅读 2 篇，12/18 下午只看作文","12/19 下午考英语一，上午考政治"], d: 6 },
+          { s: ["复盘","打印准考证、踩点考场、备好文具证件；睡前不再做新题","睡好比多做一套卷重要"], d: 3 }
+        ]}
+      ]
+    }
+  ],
+  /* 每日时间表模板 */
+  dayBlocks: [
+    { id: "b1", t: "06:40–07:10", mins: 30, title: "晨间单词", subj: "eng", desc: "100 个核心词滚动复习（只复习旧词，不背新词）" },
+    { id: "b2", t: "07:10–07:40", mins: 30, title: "政治早读", subj: "pol", desc: "背诵手册/时政要点朗读；10 月可改为英语长难句" },
+    { id: "b3", t: "08:00–11:30", mins: 210, title: "数学分析主攻", subj: "math", desc: "当前周任务：精读＋课后题，或真题整套限时（严格计时）" },
+    { id: "b4", t: "11:30–11:50", mins: 20, title: "数分错题回顾", subj: "math", desc: "当天做错的题立刻重做一遍，不看答案" },
+    { id: "b5", t: "13:30–16:30", mins: 180, title: "高等代数主攻", subj: "alg", desc: "与数分错开：上午推证、下午练计算与题型" },
+    { id: "b6", t: "16:50–17:50", mins: 60, title: "英语真题精读", subj: "eng", desc: "1–2 篇阅读精读＋1 句长难句翻译抄写" },
+    { id: "b7", t: "19:00–20:00", mins: 60, title: "政治刷题", subj: "pol", desc: "1000 题/肖八选择题，错题当日标记并二刷" },
+    { id: "b8", t: "20:00–21:30", mins: 90, title: "高代巩固＋错题本", subj: "alg", desc: "重做当日错题，补充错题本，整理方法卡片" },
+    { id: "b9", t: "21:30–22:00", mins: 30, title: "全天复盘＋次日计划", subj: "rev", desc: "用本 App 打卡，写下 3 条收获与 1 条卡点" }
+  ],
+  /* 知识大纲（按官方指定教材章节） */
+  syllabus: [
+    {
+      key: "math", name: "数学分析", color: "#3b5bdb",
+      book: "华东师范大学数学科学学院《数学分析》高等教育出版社 2019（第五版）· 官方指定 724 参考书",
+      chapters: [
+        { n: "实数集与函数", d: "实数的确界原理、绝对值与不等式、函数概念与基本初等函数", r: "课本 §1 · 地基" },
+        { n: "数列极限", d: "ε-N 定义、唯一性/有界性/保号性、单调有界定理、Cauchy 收敛准则、Stolz 定理", r: "课本 §2 · 高频命题区" },
+        { n: "函数极限", d: "ε-δ 定义、单侧极限、Heine 定理、无穷小量与阶、两个重要极限", r: "课本 §3 · 高频" },
+        { n: "函数连续性", d: "连续定义、间断点分类、闭区间上连续函数性质、一致连续（重难点）", r: "课本 §4 · 证明题常考" },
+        { n: "导数与微分", d: "导数定义与几何意义、求导法则、高阶导数与 Leibniz 公式、微分与近似计算", r: "课本 §5 · 基础" },
+        { n: "微分中值定理及其应用", d: "Rolle / Lagrange / Cauchy 定理、Taylor 公式（Peano 与 Lagrange 余项）、极值与最值、凸函数", r: "课本 §6 · 命题核心" },
+        { n: "实数的完备性", d: "区间套定理、聚点定理、有限覆盖定理、完备性等价命题", r: "课本 §7 · 证明题武器库" },
+        { n: "不定积分", d: "换元积分法、分部积分法、有理函数与三角有理式积分", r: "课本 §8 · 练手速" },
+        { n: "定积分", d: "Riemann 和、可积条件与可积函数类、微积分基本定理、变限积分", r: "课本 §9 · 必考" },
+        { n: "定积分的应用", d: "平面图形面积、体积、弧长、旋转体侧面积、物理应用", r: "课本 §10 · 计算题" },
+        { n: "反常积分", d: "无穷积分与瑕积分的收敛判别、比较判别法、绝对收敛", r: "课本 §11 · 易失分" },
+        { n: "数项级数", d: "正项级数判别法、交错级数、绝对/条件收敛、Abel 与 Dirichlet 判别法", r: "课本 §12 · 高频" },
+        { n: "函数列与函数项级数", d: "一致收敛、Weierstrass 判别法、和函数的连续性与逐项微分/积分", r: "课本 §13 · 难点" },
+        { n: "幂级数", d: "收敛半径与收敛域、和函数求法、幂级数展开与应用", r: "课本 §14 · 必考计算" },
+        { n: "Fourier 级数", d: "三角级数、Dirichlet 收敛定理、按段光滑函数的展开", r: "课本 §15 · 计算+定理" },
+        { n: "多元函数的极限与连续", d: "重极限、累次极限、多元函数连续性", r: "下册 §16 · 概念易混" },
+        { n: "多元函数微分学", d: "偏导数、全微分、复合与隐函数求导、方向导数与梯度、Taylor 公式、极值与条件极值", r: "下册 §17 · 重点" },
+        { n: "隐函数定理及其应用", d: "隐函数存在定理、Jacobi 行列式、条件极值与 Lagrange 乘数法", r: "下册 §18 · 证明+计算" },
+        { n: "含参量积分", d: "含参量正常积分与反常积分、一致收敛、Euler 积分", r: "下册 §19 · 部分院校常考" },
+        { n: "曲线积分", d: "第一、二型曲线积分、Green 公式、曲线积分与路径无关的条件", r: "下册 §20 · 命题富矿" },
+        { n: "重积分", d: "二重/三重积分、换序、极坐标与球坐标换元、重积分应用", r: "下册 §21 · 计算量大" },
+        { n: "曲面积分", d: "第一、二型曲面积分、Gauss 公式、Stokes 公式、场论初步", r: "下册 §22 · 最易失分" }
+      ]
+    },
+    {
+      key: "alg", name: "高等代数", color: "#7048e8",
+      book: "北京大学数学系《高等代数》高等教育出版社 2019（第五版）· 官方指定 821 参考书",
+      chapters: [
+        { n: "第 1 章 多项式", d: "数域、整除、带余除法、最大公因式、互素、不可约多项式、重因式、有理根与 Eisenstein 判别法", r: "基础章 · 计算题主力" },
+        { n: "第 2 章 行列式", d: "排列与逆序数、n 阶行列式定义与性质、按行列展开、Cramer 法则、Vandermonde 行列式", r: "高频计算" },
+        { n: "第 3 章 线性方程组", d: "消元法、矩阵的秩、解的结构与判别、齐次解空间、非齐次通解", r: "必考" },
+        { n: "第 4 章 矩阵", d: "运算、逆矩阵、分块矩阵、初等变换与初等矩阵、等价标准形、秩与秩不等式", r: "工具章 + 证明题核心" },
+        { n: "第 5 章 二次型", d: "标准形、配方法与合同变换、惯性定理、正定二次型与正定矩阵判定", r: "必考" },
+        { n: "第 6 章 线性空间", d: "定义与性质、基与维数、坐标、基变换、子空间、交与和、直和", r: "抽象起点" },
+        { n: "第 7 章 线性变换", d: "定义、矩阵表示、核与像、不变子空间、特征值与特征向量、可对角化条件", r: "重点" },
+        { n: "第 8 章 λ-矩阵", d: "λ-矩阵标准形、不变因子与初等因子、最小多项式、Jordan 标准形", r: "难点高频" },
+        { n: "第 9 章 欧几里得空间", d: "内积、标准正交基、Schmidt 正交化、正交变换、对称变换与实对称矩阵对角化", r: "必考" },
+        { n: "第 10 章 双线性函数与辛空间", d: "线性函数、对偶空间、双线性函数、辛空间（按指定教材取舍）", r: "选考 · 时间紧可后置" }
+      ]
+    },
+    {
+      key: "pol", name: "思想政治理论", color: "#e8590c",
+      book: "统考 101 · 精讲精练 + 1000 题 + 肖八/肖四 + 时政讲义",
+      chapters: [
+        { n: "马原 · 唯物论", d: "物质与意识、实践与认识、世界的物质统一性", r: "选择题为主" },
+        { n: "马原 · 辩证法", d: "联系与发展、三大规律、五对范畴、辩证思维方法", r: "分析题高频" },
+        { n: "马原 · 认识论与唯物史观", d: "认识与实践、真理与价值、社会存在与意识、社会基本矛盾", r: "分析题高频" },
+        { n: "马原 · 政治经济学", d: "商品与价值、剩余价值、资本积累、垄断与金融资本", r: "计算+选择" },
+        { n: "马原 · 科学社会主义", d: "社会主义五百年、共产主义理想", r: "选择题" },
+        { n: "毛中特 · 毛泽东思想", d: "新民主主义革命理论、社会主义改造、社会主义建设道路", r: "选择题+分析题" },
+        { n: "毛中特 · 习近平新时代思想", d: "中国式现代化、五位一体、四个全面、新发展理念、总体国家安全观", r: "分值最高 · 必背框架" },
+        { n: "史纲 · 近代史时间轴", d: "1840 以来重大事件、三个历史决议、抗日战争与解放战争", r: "时间轴记忆法" },
+        { n: "史纲 · 新中国与改革开放", d: "社会主义革命和建设、改革开放进程、新时代十年伟大变革", r: "选择题" },
+        { n: "思修法基", d: "人生观与价值观、中国精神、社会主义核心价值观、道德与法治素养", r: "性价比高 · 别放弃" },
+        { n: "形势与政策（时政）", d: "全年重大会议、重要讲话、重要纪念日、国际关系", r: "12 月集中突破" },
+        { n: "分析题答题方法", d: "原理＋材料＋阐述三段式；马原先定位原理；分点分层书写", r: "决定 70+ 的关键" }
+      ]
+    },
+    {
+      key: "eng", name: "英语一", color: "#0c8599",
+      book: "统考 201 · 考研词汇书 + 历年真题 2005–2026 + 写作素材",
+      chapters: [
+        { n: "词汇", d: "核心 5500 词滚动 5 遍以上，重点熟词僻义与真题生词", r: "全程 · 一天都不能停" },
+        { n: "长难句与语法", d: "句子主干识别、三大从句、非谓语、倒装与省略", r: "10–11 月打底" },
+        { n: "阅读理解 Part A", d: "细节/推理/例证/态度/主旨题型的选项设置规律与错因归类", r: "40 分 · 最大分值" },
+        { n: "新题型", d: "七选五、排序、小标题匹配；先看逻辑词与指代", r: "10 分 · 技巧性强" },
+        { n: "翻译", d: "长句断句、主干优先、语序调整；每天 1 句真题", r: "10 分 · 稳定提分" },
+        { n: "完形填空", d: "逻辑关系、固定搭配、上下文线索；先通读再填空", r: "10 分 · 别超时" },
+        { n: "小作文", d: "书信/通知/告示等类型模板，12 分钟内完成", r: "10 分 · 性价比高" },
+        { n: "大作文", d: "图画作文三段式：描述→分析→结论；积累 20 个高分句式", r: "20 分 · 需默写定型" }
+      ]
+    }
+  ],
+  tips: [
+    { k: "数学分析与高等代数（各 150 分，共 300 分）", v: "这两科决定能不能进复试。官方指定教材是华东师大《数学分析》第五版和北大《高等代数》第五版，按章节推进时务必以课本为主、真题为纲。所有错题必须进错题本并在 48 小时内二刷；只做错过的题，全对才算过关。" },
+    { k: "英语一（100 分）", v: "词汇是地基，阅读是主战场（40 分）。真题精读优先于任何模拟题，2005–2026 真题足够用。作文必须形成自己的定稿（大 6 篇 + 小 7 篇），考前只背自己的稿子。" },
+    { k: "政治（100 分）", v: "选择题定基础分（争 38+），分析题靠框架＋材料结合。10 月只认题型不背诵，11 月起每日 1.5–2 小时，12 月集中背肖四框架。切忌只背不写。" },
+    { k: "真题使用节奏", v: "数学近 15 年真题至少三刷：一刷整套限时摸底找漏洞，二刷按题型归类，三刷只看错题。英语真题精读一轮 + 错题二轮即可。" },
+    { k: "每天的时间分配", v: "数学 ≥6.5 小时（数分、高代各半），英语 1.5–2 小时，政治 10 月 0.5 小时 → 11 月 1.5 小时 → 12 月 2 小时。每周固定留半天休息，长期作战靠不断线。" },
+    { k: "考场节奏（务必提前校准）", v: "2026-12-19 上午 8:30–11:30 政治、下午 14:00–17:00 英语一；12-20 上午 8:30–11:30 数学分析、下午 14:00–17:00 高等代数。数学 3 小时：选择填空 40 分钟、解答题按分值分配、留 15 分钟检查。" },
+    { k: "报名与信息核对（最紧急）", v: "网上报名 2026-10-15 → 2026-10-24，每日 9:00—22:00，逾期不补办。招生单位 河北师范大学（10094），报考专业 070100 数学（013 数学科学学院），初试科目 101 思想政治理论 / 201 英语（一）/ 724 数学分析 / 821 高等代数。最终以河北师大研究生院官网当年公告与准考证为准。" },
+    { k: "跨专业考生特别注意", v: "数学类、统计学类专业以外的考生，复试时须加试两门与报考专业相关的本科主干课程（加试科目见学校当年《加试科目》附件）；复试、录取按「数学」一级学科排名。" }
+  ]
+};
+/* ==== PLAN_END ==== */
+
+/* ---------- 2. 工具函数 ---------- */
+/* PLAN_DATA_V:2026-12-19 */
+const $  = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const pad = n => String(n).padStart(2, "0");
+const DAY = 86400000;
+function ymd(d){ return d.getFullYear() + "-" + pad(d.getMonth()+1) + "-" + pad(d.getDate()); }
+function parseYmd(s){ const [y,m,d] = s.split("-").map(Number); return new Date(y, m-1, d); }
+function todayYmd(){ return ymd(new Date()); }
+function fmtCN(s){ const d = parseYmd(s); return `${d.getMonth()+1}月${d.getDate()}日`; }
+function weekdayCN(d){ return "日一二三四五六"[d.getDay()]; }
+function clamp(v,a,b){ return Math.max(a, Math.min(b, v)); }
+function uid(){ return Math.random().toString(36).slice(2, 9) + Date.now().toString(36).slice(-4); }
+function subjOf(key){
+  const map = { math:["数学分析","#3b5bdb"], alg:["高等代数","#7048e8"], pol:["政治","#e8590c"], eng:["英语一","#0c8599"], rev:["复盘","#f08c00"] };
+  return map[key] || ["其他", "#868e96"];
+}
+function toast(msg){
+  const el = $("#toast"); el.textContent = msg; el.classList.add("on");
+  clearTimeout(toast._t); toast._t = setTimeout(() => el.classList.remove("on"), 1900);
+}
+
+/* ---------- 3. 存储层 ---------- */
+const LS_KEY = "kaoyan.v1";
+const DEFAULT_STATE = {
+  examDate: PLAN.meta.examDefault,
+  theme: "auto",
+  days: {},        // "2026-01-01": { done:[ids], notes:{id:text}, note:"...", custom:[{id,title,subj,desc}] }
+  planChecks: {},  // "p1:0:2" -> true
+  sylChecks: {},   // "math:0" -> true
+  mistakes: [],
+  focus: {},       // "2026-01-01" -> minutes
+  extraFrom: null  // 自定义任务生效起始日
+};
+/* 计划数据版本：由 tools/apply-plan.mjs 自动写入，用于纠正历史数据里的考试日期 */
+const PLAN_DATA_V = "2026-12-19";
+/* 历史上被写错、需要强制纠正的"旧默认值"（用户自己填的日期绝不会出现在这里） */
+const OLD_EXAM_DATES = ["2027-12-25", "2027-12-18", "2026-12-25", "2026-03-14"];
+let S = load();
+function load(){
+  try{
+    const raw = localStorage.getItem(LS_KEY);
+    if(!raw) return JSON.parse(JSON.stringify(DEFAULT_STATE));
+    const o = JSON.parse(raw);
+    const s = Object.assign(JSON.parse(JSON.stringify(DEFAULT_STATE)), o);
+    /* 迁移：老版本计划把初试日期写成了 2027-12-25，必须纠正，否则倒计时全错。
+       只纠正"没被用户手动改过"的旧默认值，用户自己填的日期不动。 */
+    if(s.planVer !== PLAN_DATA_V){
+      if(OLD_EXAM_DATES.includes(s.examDate)) s.examDate = PLAN.meta.examDefault;
+      s.planVer = PLAN_DATA_V;
+      try{ localStorage.setItem(LS_KEY, JSON.stringify(s)); }catch(e){}
+    }
+    return s;
+  }catch(e){ console.warn("load fail", e); return JSON.parse(JSON.stringify(DEFAULT_STATE)); }
+}
+let saveTimer = null;
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    try{ localStorage.setItem(LS_KEY, JSON.stringify(S)); }
+    catch(e){ toast("保存失败：存储空间已满"); }
+  }, 120);
+}
+function saveNow(){ clearTimeout(saveTimer); saveTimer = null; try{ localStorage.setItem(LS_KEY, JSON.stringify(S)); }catch(e){} }
+/* 关键：App 被切到后台/关闭前强制落盘，避免 debounce 还没触发就丢数据 */
+function flushSave(){ if(saveTimer || true) saveNow(); }
+document.addEventListener("visibilitychange", () => { if(document.visibilityState === "hidden") flushSave(); });
+window.addEventListener("pagehide", flushSave);
+window.addEventListener("blur", flushSave);
+function day(date){ return S.days[date] || (S.days[date] = { done: [], notes: {}, note: "", custom: [] }); }
+function isDone(date, id){ const d = S.days[date]; return !!(d && d.done.includes(id)); }
+function toggleDone(date, id){
+  const d = day(date); const i = d.done.indexOf(id);
+  if(i >= 0) d.done.splice(i, 1); else d.done.push(id);
+  save();
+}
+
+/* ---------- 4. 计划推导 ---------- */
+/** 今天处于哪个阶段 / 周 */
+function currentPhase(dateStr){
+  const t = parseYmd(dateStr).getTime();
+  let last = null;
+  for(const p of PLAN.phases){
+    const [a, b] = p.range.split(" → ");
+    if(t >= parseYmd(a).getTime() && t <= parseYmd(b).getTime()) return p;
+    if(t > parseYmd(b).getTime()) last = p;
+  }
+  return last || PLAN.phases[0];
+}
+function currentWeek(phase, dateStr){
+  if(!phase) return null;
+  const t = parseYmd(dateStr).getTime();
+  // 用周序号 + 每阶段起始日推算（周段文本仅用于展示）
+  const [a] = phase.range.split(" → ");
+  const start = parseYmd(a).getTime();
+  const idx = clamp(Math.floor((t - start) / (7 * DAY)), 0, phase.weeks.length - 1);
+  return { idx, week: phase.weeks[idx], plan: phase };
+}
+/** 全局第几周（从计划首日开始） */
+function globalWeek(dateStr){
+  const start = parseYmd(PLAN.phases[0].range.split(" → ")[0]).getTime();
+  return Math.max(1, Math.floor((parseYmd(dateStr).getTime() - start) / (7 * DAY)) + 1);
+}
+function daysToExam(){
+  const t = new Date(); t.setHours(0,0,0,0);
+  return Math.round((parseYmd(S.examDate).getTime() - t.getTime()) / DAY);
+}
+
+/* ---------- 5. 今日任务生成 ---------- */
+function blocksForDate(dateStr){
+  const out = PLAN.dayBlocks.map(b => ({ ...b, group: "fixed" }));
+  const d = S.days[dateStr];
+  if(d && d.custom) d.custom.forEach(c => out.push({ ...c, group: "custom", t: "自定义", mins: 0 }));
+  return out;
+}
+function renderToday(){
+  const today = todayYmd();
+  const dl = daysToExam();
+  $("#daysLeft").textContent = dl >= 0 ? dl : "0";
+  const ex = parseYmd(S.examDate);
+  $("#examSub").textContent = `初试 ${ex.getFullYear()}年${ex.getMonth()+1}月${ex.getDate()}日（周${weekdayCN(ex)}）· ${PLAN.meta.target}`;
+  $("#todayTitle").textContent = `${fmtCN(today)} 周${weekdayCN(parseYmd(today))} · 第 ${globalWeek(today)} 周`;
+
+  const blocks = blocksForDate(today);
+  const doneN = blocks.filter(b => isDone(today, b.id)).length;
+  $("#todayCount").textContent = `${doneN}/${blocks.length}`;
+  const pct = blocks.length ? Math.round(doneN / blocks.length * 100) : 0;
+  $("#heroPct").textContent = pct + "%";
+  const C = 2 * Math.PI * 27;
+  $("#heroArc").setAttribute("stroke-dashoffset", String(C * (1 - pct / 100)));
+
+  // 四科进度条（今日）
+  const keys = ["math","alg","pol","eng"];
+  $("#heroBars").innerHTML = keys.map(k => {
+    const [name] = subjOf(k);
+    const list = blocks.filter(b => b.subj === k);
+    const dn = list.filter(b => isDone(today, b.id)).length;
+    const p = list.length ? Math.round(dn / list.length * 100) : 0;
+    return `<div><div class="bl"><span>${name}</span><span>${dn}/${list.length}</span></div>
+      <div class="bt"><div class="bf" style="width:${p}%"></div></div></div>`;
+  }).join("");
+
+  // 任务卡片
+  const html = blocks.map(b => {
+    const [sname, color] = subjOf(b.subj);
+    const on = isDone(today, b.id);
+    const note = (S.days[today] && S.days[today].notes && S.days[today].notes[b.id]) || "";
+    return `<div class="block ${on ? "done" : ""}" style="--accent:${color}" data-id="${b.id}">
+      <button class="chk" data-act="toggle" data-id="${b.id}">${on ? "✓" : ""}</button>
+      <div class="body">
+        <div class="b-meta"><span class="tag">${sname}</span><span>${b.t}</span>${b.mins ? `<span>· ${(b.mins/60).toFixed(b.mins%60?1:0)}h</span>` : ""}</div>
+        <div class="b-title">${esc(b.title)}</div>
+        ${b.desc ? `<div class="b-desc">${esc(b.desc)}</div>` : ""}
+        <div class="b-tools">
+          <button data-act="note" data-id="${b.id}">${note ? "编辑笔记" : "＋ 笔记"}</button>
+          ${b.group === "custom" ? `<button data-act="del" data-id="${b.id}">删除</button>` : ""}
+        </div>
+        <textarea class="b-note ${note ? "" : "hide"}" data-act="noteinput" data-id="${b.id}" placeholder="记录这道题/这个知识点的卡点…">${esc(note)}</textarea>
+      </div>
+    </div>`;
+  }).join("");
+  $("#todayBlocks").innerHTML = html || `<div class="empty"><b>今天没有任务</b>点下面按钮添加一条</div>`;
+
+  // 本周重点
+  const p = currentPhase(today);
+  const wk = currentWeek(p, today);
+  if(wk){
+    $("#weekHint").textContent = `${p.name} · 第 ${wk.idx+1}/${p.weeks.length} 周`;
+    $("#weekCard").innerHTML = `
+      <div class="kv"><span>本周主题</span><b>${esc(wk.week.t)}</b></div>
+      <div class="kv"><span>阶段区间</span><b>${p.range}</b></div>
+      <div class="kv" style="display:block">
+        <span style="display:block;margin-bottom:6px">本周待办</span>
+        <div class="tasklist">${wk.week.tasks.map((t,i) => {
+          const id = `${p.id}:${wk.idx}:${i}`;
+          const on = !!S.planChecks[id];
+          const [sn, c] = subjOf(subjKey(t.s[0]));
+          return `<div class="task ${on?"on":""}" style="--pc:${c}" data-plancheck="${id}">
+            <span class="tb">${on?"✓":""}</span>
+            <span class="tt">${esc(t.s[1])}${t.s[2] ? `<span class="res">${esc(t.s[2])}</span>` : ""}</span>
+          </div>`;
+        }).join("")}</div>
+      </div>`;
+  }
+
+  // 今日记录
+  const dn = S.days[today] && S.days[today].note || "";
+  if($("#dayNote").value !== dn) $("#dayNote").value = dn;
+  $("#dayNote").placeholder = "写下今天卡在哪…";
+}
+function subjKey(label){
+  if(label.indexOf("数分") === 0) return "math";
+  if(label.indexOf("高代") === 0) return "alg";
+  if(label.indexOf("政治") === 0) return "pol";
+  if(label.indexOf("英语") === 0) return "eng";
+  return "rev";
+}
+function esc(s){
+  return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+/* ---------- 6. 计划视图 ---------- */
+function renderPlan(){
+  const today = todayYmd();
+  const p = currentPhase(today), wk = currentWeek(p, today);
+  let totalTasks = 0, doneTasks = 0;
+  PLAN.phases.forEach(ph => ph.weeks.forEach((w, wi) => w.tasks.forEach((t, ti) => {
+    totalTasks++; if(S.planChecks[`${ph.id}:${wi}:${ti}`]) doneTasks++;
+  })));
+  let totalCh = 0, doneCh = 0;
+  PLAN.syllabus.forEach(s => s.chapters.forEach((c, ci) => { totalCh++; if(S.sylChecks[`${s.key}:${ci}`]) doneCh++; }));
+  const dl = daysToExam();
+
+  $("#planStats").innerHTML = `
+    <div class="stat" style="padding:10px 11px"><b>${dl >= 0 ? dl : 0}</b><span>距初试天数</span></div>
+    <div class="stat" style="padding:10px 11px"><b>${totalTasks ? Math.round(doneTasks/totalTasks*100) : 0}%</b><span>周计划完成</span></div>
+    <div class="stat" style="padding:10px 11px"><b>${totalCh ? Math.round(doneCh/totalCh*100) : 0}%</b><span>知识点覆盖</span></div>`;
+  $("#planHint").textContent = wk ? `当前：${p.name} · 第 ${wk.idx+1} 周` : "";
+
+  $("#phaseList").innerHTML = PLAN.phases.map(ph => {
+    const isCur = ph.id === p.id;
+    let tt = 0, td = 0;
+    ph.weeks.forEach((w, wi) => w.tasks.forEach((t, ti) => { tt++; if(S.planChecks[`${ph.id}:${wi}:${ti}`]) td++; }));
+    const pct = tt ? Math.round(td / tt * 100) : 0;
+    return `<div class="phase ${isCur ? "open" : ""}" style="--pc:${ph.color};background:var(--card);border:1px solid var(--line);border-left:3px solid ${ph.color}">
+      <div class="phase-h" data-phase="${ph.id}">
+        <span class="dot"></span>
+        <span class="t"><b>${esc(ph.name)} ${isCur ? '<span class="pill brand" style="font-size:10px">进行中</span>' : ""}</b>
+          <span>${ph.range} · ${ph.weeks.length} 周 · 完成 ${pct}%</span></span>
+        <span class="chev">▶</span>
+      </div>
+      <div class="phase-b">
+        <div class="phase-goal"><b>阶段目标：</b>${esc(ph.goal)}</div>
+        ${ph.weeks.map((w, wi) => {
+          let wd = 0; w.tasks.forEach((t, ti) => { if(S.planChecks[`${ph.id}:${wi}:${ti}`]) wd++; });
+          return `<div class="week" style="--pc:${ph.color}">
+            <div class="wk-h"><span class="wk-n">W${wi+1}</span><span class="wk-t">${esc(w.t)}</span><span class="wk-d">${w.r} · ${wd}/${w.tasks.length}</span></div>
+            <div class="tasklist">${w.tasks.map((t, ti) => {
+              const id = `${ph.id}:${wi}:${ti}`;
+              const on = !!S.planChecks[id];
+              const [sn, c] = subjOf(subjKey(t.s[0]));
+              return `<div class="task ${on?"on":""}" style="--pc:${c}" data-plancheck="${id}">
+                <span class="tb">${on?"✓":""}</span>
+                <span class="tt">${esc(t.s[1])}${t.s[2] ? `<span class="res">${esc(t.s[2])}　约 ${t.d}h</span>` : ""}</span>
+              </div>`;
+            }).join("")}</div>
+          </div>`;
+        }).join("")}
+      </div>
+    </div>`;
+  }).join("");
+
+  $("#sylList").innerHTML = PLAN.syllabus.map(s => {
+    let dc = 0; s.chapters.forEach((c, ci) => { if(S.sylChecks[`${s.key}:${ci}`]) dc++; });
+    const pct = Math.round(dc / s.chapters.length * 100);
+    return `<div class="syl-group" style="--pc:${s.color}">
+      <div class="grp-h" data-grp="${s.key}">
+        <span class="g-n">${esc(s.name)}</span>
+        <span class="bar"><i style="width:${pct}%;background:${s.color}"></i></span>
+        <span class="g-p">${dc}/${s.chapters.length}</span>
+      </div>
+      <div class="chapters">
+        <div class="res" style="font-size:11.5px;color:var(--text3);margin-bottom:8px">参考：${esc(s.book)}</div>
+        ${s.chapters.map((c, ci) => {
+          const on = !!S.sylChecks[`${s.key}:${ci}`];
+          return `<div class="chap" data-syl="${s.key}:${ci}" style="${on ? "opacity:.5" : ""}">
+            <div class="cn">${on ? "✓ " : ""}${esc(c.n)}</div>
+            <div class="cd">${esc(c.d)}</div>
+            <div class="cr">${esc(c.r)}</div>
+          </div>`;
+        }).join("")}
+      </div>
+    </div>`;
+  }).join("");
+
+  $("#tipsBox").innerHTML = PLAN.tips.map(t => `<div class="kv" style="display:block">
+      <b style="display:block;font-size:13px">${esc(t.k)}</b>
+      <span style="color:var(--text2);font-size:12.5px;line-height:1.6">${esc(t.v)}</span>
+    </div>`).join("");
+}
+
+/* ---------- 7. 统计视图 ---------- */
+function renderStats(){
+  const today = todayYmd();
+  // 打卡天数 & 连续
+  const dates = Object.keys(S.days).filter(d => S.days[d].done && S.days[d].done.length);
+  const studied = dates.length;
+  let streak = 0;
+  for(let i = 0; ; i++){
+    const d = new Date(); d.setDate(d.getDate() - i);
+    const k = ymd(d);
+    const rec = S.days[k];
+    if(rec && rec.done && rec.done.length) streak++;
+    else if(i === 0) continue;   // 今天还没打卡不算断
+    else break;
+  }
+  const totalFocus = Object.values(S.focus).reduce((a,b) => a + b, 0);
+  const mkTotal = S.mistakes.length;
+  const mkDone = S.mistakes.filter(m => m.mastered).length;
+
+  $("#statTiles").innerHTML = `
+    <div class="stat"><b>${studied}</b><span>累计打卡天数</span></div>
+    <div class="stat"><b>${streak}</b><span>连续打卡天数</span></div>
+    <div class="stat"><b>${(totalFocus/60).toFixed(1)}</b><span>专注小时（计时器）</span></div>
+    <div class="stat"><b>${mkDone}/${mkTotal}</b><span>错题攻克</span></div>`;
+
+  // 学科进度
+  $("#subProgress").innerHTML = PLAN.syllabus.map(s => {
+    let dc = 0; s.chapters.forEach((c, ci) => { if(S.sylChecks[`${s.key}:${ci}`]) dc++; });
+    const pct = Math.round(dc / s.chapters.length * 100);
+    return `<div class="subrow">
+      <span class="sn">${esc(s.name)}</span>
+      <span class="bar" style="flex:1;max-width:150px"><i style="width:${pct}%;background:${s.color}"></i></span>
+      <span class="sp">${dc}/${s.chapters.length} · ${pct}%</span>
+    </div>`;
+  }).join("") || `<div class="empty">还没有大纲数据</div>`;
+
+  // 热力图：最近 12 周（按列=周，行=星期）
+  const end = new Date(); const cells = [];
+  const start = new Date(); start.setDate(start.getDate() - (12*7 - 1));
+  // 对齐到周日
+  start.setDate(start.getDate() - start.getDay());
+  const cur = new Date(start);
+  while(cur <= end){
+    const k = ymd(cur);
+    const rec = S.days[k] || {};
+    const n = (rec.done || []).length;
+    const total = PLAN.dayBlocks.length;
+    const r = total ? n / total : 0;
+    let lv = 0;
+    if(n > 0) lv = r < .3 ? 1 : r < .6 ? 2 : r < .9 ? 3 : 4;
+    cells.push(`<i class="l${lv} ${k===today?"today":""}" title="${k} ${n} 项"></i>`);
+    cur.setDate(cur.getDate() + 1);
+  }
+  $("#heat").innerHTML = cells.join("");
+
+  // 近 7 天
+  const bars = [];
+  for(let i = 6; i >= 0; i--){
+    const d = new Date(); d.setDate(d.getDate() - i);
+    const k = ymd(d); const rec = S.days[k] || {};
+    const n = (rec.done || []).length; const total = PLAN.dayBlocks.length;
+    const pct = total ? Math.round(n/total*100) : 0;
+    bars.push(`<div style="display:flex;align-items:center;gap:9px;padding:5px 0">
+      <span style="font-size:11.5px;color:var(--text3);width:52px;flex:none">${d.getMonth()+1}/${d.getDate()} 周${weekdayCN(d)}</span>
+      <span class="bar" style="flex:1"><i style="width:${pct}%"></i></span>
+      <span style="font-size:11.5px;color:var(--text3);width:60px;text-align:right;font-variant-numeric:tabular-nums">${n}/${total}</span>
+    </div>`);
+  }
+  $("#weekBars").innerHTML = bars.join("");
+
+  const f7 = (() => { let s = 0; for(let i=0;i<7;i++){ const d=new Date(); d.setDate(d.getDate()-i); s += S.focus[ymd(d)] || 0; } return s; })();
+  $("#focusHint").textContent = "来自专注计时器";
+  $("#focusTiles").innerHTML = `
+    <div class="stat" style="padding:10px 11px"><b>${(totalFocus/60).toFixed(1)}</b><span>累计小时</span></div>
+    <div class="stat" style="padding:10px 11px"><b>${(f7/60).toFixed(1)}</b><span>近 7 天</span></div>
+    <div class="stat" style="padding:10px 11px"><b>${(totalFocus/60/Math.max(1,studied)).toFixed(1)}</b><span>日均（打卡日）</span></div>`;
+}
+
+/* ---------- 8. 错题本 ---------- */
+let mkFilter = "all";
+function renderMistakes(){
+  const list = S.mistakes.filter(m => mkFilter === "all" || m.subj === mkFilter);
+  $("#mkCount").textContent = `${S.mistakes.filter(m=>m.mastered).length}/${S.mistakes.length} 已攻克`;
+  if(!list.length){
+    $("#mkList").innerHTML = `<div class="empty"><b>暂无错题</b>记下第一道错题，是提分的开始</div>`;
+    return;
+  }
+  $("#mkList").innerHTML = list.map(m => {
+    const [sn, c] = subjOf(m.subj);
+    return `<div class="mk ${m.mastered?"mastered":""}" style="--accent:${c}">
+      <div class="mh"><span class="tag" style="padding:1.5px 7px;border-radius:5px;background:var(--card2);color:${c}">${sn}</span>
+        <span>${esc(m.date || "")}</span><span>${esc(m.src || "")}</span>
+        <span class="spacer"></span>${m.mastered ? '<span style="color:var(--ok)">已攻克</span>' : ""}</div>
+      <div class="q">${esc(m.q)}</div>
+      ${m.why ? `<div class="why">错因：${esc(m.why)}` : ""}
+      ${m.fix ? `<div class="fix">正解：${esc(m.fix)}</div>` : ""}
+      <div class="mt">
+        <button data-mk="toggle" data-id="${m.id}">${m.mastered?"↺ 标记未攻克":"✓ 标记已攻克"}</button>
+        <button data-mk="del" data-id="${m.id}">删除</button>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+/* ---------- 9. 弹层 ---------- */
+function openSheet(html){
+  $("#sheet").innerHTML = `<div class="sheet-grab"></div>` + html;
+  $("#sheet").classList.add("on"); $("#sheetBg").classList.add("on");
+}
+function closeSheet(){ $("#sheet").classList.remove("on"); $("#sheetBg").classList.remove("on"); }
+$("#sheetBg").addEventListener("click", closeSheet);
+
+function sheetAddTask(){
+  openSheet(`<h3>添加自定义任务</h3>
+    <label class="fld"><span>任务内容</span><input id="ctTitle" placeholder="例：手证 Cauchy 收敛准则"></label>
+    <label class="fld"><span>科目</span><select id="ctSubj">
+      <option value="math">数学分析</option><option value="alg">高等代数</option>
+      <option value="pol">政治</option><option value="eng">英语一</option><option value="rev">复盘/其他</option>
+    </select></label>
+    <label class="fld"><span>说明（可选）</span><input id="ctDesc" placeholder="例：限时 20 分钟，不看答案"></label>
+    <div class="btnrow"><button class="btn ghost" id="ctCancel">取消</button><button class="btn" id="ctOk">添加</button></div>`);
+  $("#ctCancel").onclick = closeSheet;
+  $("#ctOk").onclick = () => {
+    const title = $("#ctTitle").value.trim();
+    if(!title){ toast("请填写任务内容"); return; }
+    const d = day(todayYmd());
+    d.custom.push({ id: "c" + uid(), title, subj: $("#ctSubj").value, desc: $("#ctDesc").value.trim(), mins: 0, group: "custom" });
+    saveNow(); closeSheet(); renderToday(); toast("已添加，只对今天生效");
+  };
+}
+function sheetNote(id){
+  const today = todayYmd();
+  const d = day(today);
+  const blk = blocksForDate(today).find(b => b.id === id) || {};
+  openSheet(`<h3>${esc(blk.title || "记录")}</h3>
+    <label class="fld"><span>卡点 / 收获</span><textarea id="ntText" style="min-height:120px">${esc(d.notes[id] || "")}</textarea></label>
+    <div class="btnrow"><button class="btn ghost" id="ntCancel">取消</button><button class="btn" id="ntOk">保存</button></div>`);
+  $("#ntCancel").onclick = closeSheet;
+  $("#ntOk").onclick = () => { d.notes[id] = $("#ntText").value; saveNow(); closeSheet(); renderToday(); toast("已保存"); };
+}
+function sheetMistake(){
+  openSheet(`<h3>记一道错题</h3>
+    <label class="fld"><span>题目/来源</span><input id="mkQ" placeholder="例：2021 数分真题 第 6 题（一致连续证明）"></label>
+    <label class="fld"><span>科目</span><select id="mkS">
+      <option value="math">数学分析</option><option value="alg">高等代数</option><option value="pol">政治</option><option value="eng">英语一</option>
+    </select></label>
+    <label class="fld"><span>错因（越具体越好）</span><textarea id="mkW" placeholder="例：忘记验证一致连续需要 ε 与 x 无关"></textarea></label>
+    <label class="fld"><span>正解思路</span><textarea id="mkF" placeholder="例：先取 δ 与 x 无关，再用三角不等式拆两步"></textarea></label>
+    <div class="btnrow"><button class="btn ghost" id="mkCancel">取消</button><button class="btn" id="mkOk">保存</button></div>`);
+  $("#mkCancel").onclick = closeSheet;
+  $("#mkOk").onclick = () => {
+    const q = $("#mkQ").value.trim();
+    if(!q){ toast("请填写题目或来源"); return; }
+    S.mistakes.unshift({ id: uid(), subj: $("#mkS").value, q, why: $("#mkW").value.trim(), fix: $("#mkF").value.trim(),
+      src: "", date: fmtCN(todayYmd()), mastered: false, ts: Date.now() });
+    saveNow(); closeSheet(); renderMistakes(); renderStats(); toast("已加入错题本");
+  };
+}
+function sheetInstall(){
+  const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const standalone = navigator.standalone === true || window.matchMedia("(display-mode: standalone)").matches;
+  openSheet(`<h3>安装到 iPhone 13</h3>
+    <div style="font-size:13px;line-height:2;color:var(--text2)">
+      ${standalone ? "✅ 你已经在“主屏幕 App”模式下运行了。" : isiOS ? "当前是 Safari 浏览器模式，按下面 3 步加为 App：" : "在 iPhone 上用 Safari 打开本页，然后："}
+      <ol style="padding-left:20px;margin:8px 0">
+        <li>点底部中间的 <b>分享</b> 图标 ⬆️</li>
+        <li>向下滑，选 <b>“添加到主屏幕”</b></li>
+        <li>右上角点 <b>“添加”</b></li>
+      </ol>
+      完成后主屏幕会出现 Σ 图标，点开就是全屏 App，断网也能用。
+    </div>
+    <div class="note-tip" style="margin-top:10px">提示：一定要用 <b>Safari</b>，微信内置浏览器和 Chrome 没有“添加到主屏幕”。首次打开后请联网停留几秒，让离线缓存装好。</div>
+    <div class="btnrow" style="margin-top:14px"><button class="btn" id="insOk">知道了</button></div>`);
+  $("#insOk").onclick = closeSheet;
+}
+function sheetTips(){
+  openSheet(`<h3>使用说明</h3>
+    <div style="font-size:13px;line-height:1.85;color:var(--text2)">
+      <p style="margin:0 0 8px"><b>今日</b>：勾掉完成的任务，写卡点。红色数字是距初试天数。</p>
+      <p style="margin:0 0 8px"><b>计划</b>：四阶段周计划 + 教材知识大纲，点标题展开，点条目划掉表示学完。</p>
+      <p style="margin:0 0 8px"><b>统计</b>：打卡热力图、四科覆盖度、近 7 天完成率。</p>
+      <p style="margin:0 0 8px"><b>错题</b>：数学提分核心。每道错题写清“错因”，48 小时内二刷。</p>
+      <p style="margin:0"><b>数据</b>：存在本机浏览器，不上传。清理 Safari 数据会丢失，记得在设置里导出备份。</p>
+    </div>
+    <div class="btnrow" style="margin-top:14px"><button class="btn" id="tpOk">开始复习</button></div>`);
+  $("#tpOk").onclick = closeSheet;
+}
+
+/* ---------- 10. 计时器 ---------- */
+let timer = { mins: 25, left: 25*60, running: false, iv: null, startStamp: null };
+function timerPaint(){
+  const m = Math.floor(timer.left / 60), s = timer.left % 60;
+  $("#timerView").textContent = `${pad(m)}:${pad(s)}`;
+  $("#btnTimer").textContent = timer.running ? "暂停" : (timer.left === timer.mins*60 ? "开始" : "继续");
+}
+function timerStart(){
+  if(timer.running){
+    clearInterval(timer.iv); timer.running = false;
+    finishFocusSession();
+    timerPaint(); return;
+  }
+  timer.running = true; timer.startStamp = Date.now();
+  timer.iv = setInterval(() => {
+    timer.left--;
+    if(timer.left <= 0){
+      clearInterval(timer.iv); timer.running = false; timer.left = 0;
+      finishFocusSession();
+      toast("专注完成！休息 5 分钟");
+      timer.left = timer.mins * 60;
+    }
+    timerPaint();
+  }, 1000);
+  timerPaint();
+}
+function finishFocusSession(){
+  if(!timer.startStamp) return;
+  const el = Math.round((Date.now() - timer.startStamp) / 60000);
+  if(el >= 1){
+    const k = todayYmd();
+    S.focus[k] = (S.focus[k] || 0) + el;
+    saveNow(); timer.startStamp = null;
+  }
+}
+$("#btnTimer").onclick = timerStart;
+$("#btnTimerReset").onclick = () => {
+  clearInterval(timer.iv); timer.running = false; finishFocusSession();
+  timer.left = timer.mins * 60; timerPaint();
+};
+$$(".chip[data-min]").forEach(b => b.onclick = () => {
+  $$(".chip[data-min]").forEach(x => x.classList.remove("on"));
+  b.classList.add("on");
+  timer.mins = Number(b.dataset.min);
+  clearInterval(timer.iv); timer.running = false; finishFocusSession();
+  timer.left = timer.mins * 60; timerPaint();
+});
+
+/* ---------- 11. 主题 ---------- */
+function applyTheme(){
+  document.documentElement.setAttribute("data-theme", S.theme || "auto");
+  const meta = document.querySelector('meta[name="theme-color"]');
+  const dark = S.theme === "dark" || (S.theme === "auto" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  if(meta) meta.setAttribute("content", dark ? "#0d1119" : "#1c2a5c");
+  $$("#themeSeg button").forEach(b => b.classList.toggle("on", b.dataset.t === (S.theme || "auto")));
+}
+$("#btnTheme").onclick = () => {
+  const order = ["auto", "light", "dark"];
+  S.theme = order[(order.indexOf(S.theme || "auto") + 1) % 3];
+  saveNow(); applyTheme(); toast("外观：" + ({auto:"跟随系统",light:"浅色",dark:"深色"}[S.theme]));
+};
+$$("#themeSeg button").forEach(b => b.onclick = () => { S.theme = b.dataset.t; saveNow(); applyTheme(); });
+
+/* ---------- 12. 事件绑定 ---------- */
+// 底部导航
+$$("#tabs button").forEach(b => b.onclick = () => {
+  const v = b.dataset.v;
+  $$("#tabs button").forEach(x => x.classList.toggle("on", x === b));
+  ["today","plan","stats","mistakes","settings"].forEach(k => $("#v-" + k).classList.toggle("hide", k !== v));
+  window.scrollTo({ top: 0, behavior: "instant" in window ? "auto" : "auto" });
+  if(v === "stats") renderStats();
+  if(v === "plan") renderPlan();
+  if(v === "mistakes") renderMistakes();
+});
+// 今日任务交互
+$("#todayBlocks").addEventListener("click", e => {
+  const btn = e.target.closest("[data-act]");
+  if(!btn) return;
+  const id = btn.dataset.id, act = btn.dataset.act;
+  if(act === "toggle"){ toggleDone(todayYmd(), id); renderToday(); }
+  else if(act === "note"){
+    const ta = $(`textarea[data-id="${id}"]`);
+    if(ta){ ta.classList.toggle("hide"); if(!ta.classList.contains("hide")) ta.focus(); }
+    else sheetNote(id);
+  }
+  else if(act === "del"){
+    const d = day(todayYmd());
+    d.custom = d.custom.filter(c => c.id !== id);
+    saveNow(); renderToday();
+  }
+});
+$("#todayBlocks").addEventListener("blur", e => {
+  const ta = e.target.closest("textarea[data-act=noteinput]");
+  if(ta){ const d = day(todayYmd()); d.notes[ta.dataset.id] = ta.value; save(); }
+}, true);
+$("#btnAddTask").onclick = sheetAddTask;
+$("#btnShuffle").onclick = () => {
+  const arr = PLAN.dayBlocks.slice();
+  for(let i = arr.length - 1; i > 0; i--){ const j = Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; }
+  PLAN.dayBlocks.length = 0; arr.forEach(b => PLAN.dayBlocks.push(b));
+  renderToday(); toast("已重排今日顺序（不改变内容）");
+};
+$("#dayNote").addEventListener("input", e => { day(todayYmd()).note = e.target.value; save(); });
+// 计划视图
+$("#planList") && null;
+$("#v-plan").addEventListener("click", e => {
+  const ph = e.target.closest("[data-phase]");
+  if(ph){ ph.parentElement.classList.toggle("open"); return; }
+  const pc = e.target.closest("[data-plancheck]");
+  if(pc){
+    const id = pc.dataset.plancheck;
+    S.planChecks[id] = !S.planChecks[id];
+    if(!S.planChecks[id]) delete S.planChecks[id];
+    saveNow();
+    pc.classList.toggle("on", !!S.planChecks[id]);
+    const tb = pc.querySelector(".tb"); if(tb) tb.textContent = S.planChecks[id] ? "✓" : "";
+    renderPlanHeaderOnly();
+    return;
+  }
+  const gp = e.target.closest("[data-grp]");
+  if(gp){ gp.classList.toggle("open"); return; }
+  const sy = e.target.closest("[data-syl]");
+  if(sy){
+    const id = sy.dataset.syl;
+    S.sylChecks[id] = !S.sylChecks[id];
+    if(!S.sylChecks[id]) delete S.sylChecks[id];
+    saveNow(); renderPlan(); renderStats();
+  }
+});
+function renderPlanHeaderOnly(){
+  let totalTasks = 0, doneTasks = 0;
+  PLAN.phases.forEach(ph => ph.weeks.forEach((w, wi) => w.tasks.forEach((t, ti) => {
+    totalTasks++; if(S.planChecks[`${ph.id}:${wi}:${ti}`]) doneTasks++;
+  })));
+  let totalCh = 0, doneCh = 0;
+  PLAN.syllabus.forEach(s => s.chapters.forEach((c, ci) => { totalCh++; if(S.sylChecks[`${s.key}:${ci}`]) doneCh++; }));
+  const dl = daysToExam();
+  $("#planStats").innerHTML = `
+    <div class="stat" style="padding:10px 11px"><b>${dl >= 0 ? dl : 0}</b><span>距初试天数</span></div>
+    <div class="stat" style="padding:10px 11px"><b>${totalTasks ? Math.round(doneTasks/totalTasks*100) : 0}%</b><span>周计划完成</span></div>
+    <div class="stat" style="padding:10px 11px"><b>${totalCh ? Math.round(doneCh/totalCh*100) : 0}%</b><span>知识点覆盖</span></div>`;
+}
+// 也允许在“今日”页点本周任务
+$("#weekCard").addEventListener("click", e => {
+  const pc = e.target.closest("[data-plancheck]");
+  if(!pc) return;
+  const id = pc.dataset.plancheck;
+  S.planChecks[id] = !S.planChecks[id];
+  if(!S.planChecks[id]) delete S.planChecks[id];
+  saveNow();
+  pc.classList.toggle("on", !!S.planChecks[id]);
+  const tb = pc.querySelector(".tb"); if(tb) tb.textContent = S.planChecks[id] ? "✓" : "";
+  renderPlanHeaderOnly();
+});
+// 错题
+$("#btnAddMk").onclick = sheetMistake;
+$("#mkFilter").addEventListener("click", e => {
+  const b = e.target.closest("button[data-s]"); if(!b) return;
+  mkFilter = b.dataset.s;
+  $$("#mkFilter button").forEach(x => x.classList.toggle("on", x === b));
+  renderMistakes();
+});
+$("#mkList").addEventListener("click", e => {
+  const b = e.target.closest("[data-mk]"); if(!b) return;
+  const m = S.mistakes.find(x => x.id === b.dataset.id); if(!m) return;
+  if(b.dataset.mk === "toggle") m.mastered = !m.mastered;
+  else if(b.dataset.mk === "del"){
+    if(!confirm("删除这道错题？")) return;
+    S.mistakes = S.mistakes.filter(x => x.id !== b.dataset.id);
+  }
+  saveNow(); renderMistakes(); renderStats();
+});
+// 设置
+$("#setExamDate").addEventListener("change", e => {
+  if(!e.target.value) return;
+  S.examDate = e.target.value; saveNow(); renderToday(); renderPlan(); toast("考试日期已更新");
+});
+$("#btnExport").onclick = () => {
+  const blob = new Blob([JSON.stringify(S, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `考研打卡备份-${todayYmd()}.json`;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 3000);
+  toast("已导出备份文件");
+};
+$("#btnImport").onclick = () => $("#fileImport").click();
+$("#fileImport").addEventListener("change", e => {
+  const f = e.target.files[0]; if(!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try{
+      const o = JSON.parse(r.result);
+      if(typeof o !== "object" || !o) throw new Error("bad");
+      S = Object.assign(JSON.parse(JSON.stringify(DEFAULT_STATE)), o);
+      saveNow(); boot(true); toast("导入成功");
+    }catch(err){ toast("文件格式不对，导入失败"); }
+  };
+  r.readAsText(f);
+  e.target.value = "";
+});
+$("#btnReset").onclick = () => {
+  if(!confirm("会清空所有打卡、错题和大纲进度，且不可恢复。确定？")) return;
+  if(!confirm("再确认一次：真的要清空吗？")) return;
+  S = JSON.parse(JSON.stringify(DEFAULT_STATE));
+  saveNow(); boot(true); toast("已清空");
+};
+$("#installTip").innerHTML = `点这里看图文步骤 → <a href="javascript:void(0)" id="tipGo">安装指南</a>`;
+document.addEventListener("click", e => { if(e.target && e.target.id === "tipGo") sheetInstall(); });
+$("#brandSub").onclick = sheetTips;
+
+// 滚动阴影
+window.addEventListener("scroll", () => {
+  $("#topbar").classList.toggle("scrolled", window.scrollY > 4);
+}, { passive: true });
+
+// 系统主题变化
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", applyTheme);
+
+/* ---------- 13. 启动 ---------- */
+function boot(isReimport){
+  if(!isReimport){ $("#setExamDate").value = S.examDate || PLAN.meta.examDefault; }
+  else { $("#setExamDate").value = S.examDate || PLAN.meta.examDefault; }
+  applyTheme();
+  renderToday();
+  renderPlan();
+  renderStats();
+  renderMistakes();
+  timerPaint();
+}
+boot();
+
+// 跨天自动刷新
+let lastDay = todayYmd();
+setInterval(() => {
+  const t = todayYmd();
+  if(t !== lastDay){ lastDay = t; renderToday(); toast("新的一天，开始打卡吧"); }
+}, 30000);
+
+// Service Worker
+if("serviceWorker" in navigator){
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
+  });
+}
+</script>
+</body>
+</html>

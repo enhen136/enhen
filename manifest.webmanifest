@@ -1,0 +1,23 @@
+{
+  "id": "hebtu-math-kaoyan-checkin",
+  "name": "数学考研打卡 · 河北师范大学",
+  "short_name": "考研打卡",
+  "description": "河北师范大学数学专业考研复习计划与打卡：数学分析、高等代数、政治、英语一。支持离线使用。",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#f2f4f9",
+  "theme_color": "#1c2a5c",
+  "categories": ["education", "productivity"],
+  "icons": [
+    { "src": "icons/favicon-32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "icons/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
